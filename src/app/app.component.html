@@ -1,0 +1,12 @@
+<div class="column">
+  <h1>Cálculo de IMC</h1>
+  <form [formGroup]="form" class="column" (ngSubmit)="onSubmit()">
+    <input type="number" formControlName="height" placeholder="Altura (m)">
+    <input type="number" formControlName="weight" placeholder="Peso (kg)">
+    <button type="submit">Calcular</button>
+  </form>
+  <div *ngIf="imc">
+    <h2>Seu IMC é {{imc}}kg/m2</h2>
+    <p>Seu IMC indica {{imcInfo}}</p>
+  </div>
+</div>
