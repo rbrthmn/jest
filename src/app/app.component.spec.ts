@@ -1,35 +1,27 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { FormBuilder } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+  let fixture: AppComponent;
+  let formBuilderMock: FormBuilder;
+
+  beforeEach(() => {
+    formBuilderMock = new FormBuilder();
+    fixture = new AppComponent(formBuilderMock);
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  describe('Test: IMC calculate', () => {
+    it("Using height's value of 1.73m and weight's value of 73kg", () => {
+      expect(fixture.calculateIMC(1.73, 73)).toBe(24.39)
+    });
+    it("Using height's value of 1.63m and weight's value of 63kg", () => {
+      expect(fixture.calculateIMC(1.63, 63)).toBe(23.71)
+    });
   });
 
-  it(`should have as title 'jest'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('jest');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('jest app is running!');
-  });
-});
+  describe('Test: IMC info', () => {
+    it("Using IMC's value of 33", () => {
+      expect(fixture.getImcInfo(33)).toBe('obesidade')
+    });
+  })
+})

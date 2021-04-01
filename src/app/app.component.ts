@@ -23,7 +23,7 @@ export class AppComponent {
 
   calculateIMC(height: number, weight: number) {
     const imc = weight / Math.pow(height, 2);
-    return imc.toFixed(2);
+    return Number(imc.toFixed(2));
   }
 
   getImcInfo(imc: number) {
